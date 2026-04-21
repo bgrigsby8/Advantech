@@ -1,0 +1,17 @@
+dnspython==2.8.0
+future==1.0.0
+googleapis-common-protos==1.74.0
+grpclib==0.4.9
+h2==4.3.0
+hpack==4.1.0
+hyperframe==6.1.0
+iso8601==2.1.0
+multidict==6.7.1
+pip==25.3
+protobuf==6.33.5
+pymongo==4.17.0
+pyyaml==6.0.3
+regex==2026.4.4
+pyserial==3.5
+typing-extensions==4.15.0
+viam-sdk==0.74.0
