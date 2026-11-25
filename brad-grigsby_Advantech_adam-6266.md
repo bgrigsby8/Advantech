@@ -22,7 +22,7 @@ The module only writes a relay when you call `set()` on a relay pin or send the 
 | `timeout_s`            | float  | Optional  | Timeout in seconds for connecting and for each request. Default `1.0`                                 |
 | `keepalive_interval_s` | float  | Optional  | If above `0`, read all eight states in the background at this interval, in seconds. Default `0` (off) |
 
-Set `keepalive_interval_s` if you enable the ADAM's communication watchdog (the setting that drives relays to a fail-safe value when no packet arrives for a while). Choose an interval well below the watchdog time so the relays do not drop while the machine is otherwise idle. The keepalive never writes; dropping outputs on communication loss is left to the watchdog.
+Set `keepalive_interval_s` if you enable the ADAM's communication watchdog (the setting that drives relays to a fail-safe value when no packet arrives for a while). The ADAM-6200 manual describes the watchdog time as the Host Idle timeout, so choose an interval well below that value so the relays do not drop while the machine is otherwise idle. The keepalive never writes; dropping outputs on communication loss is left to the watchdog.
 
 ### Example Configuration
 
@@ -96,7 +96,7 @@ Names and values are checked before anything is written: an unknown name, a `DI`
 ## Connection handling and errors
 
 - The TCP connection is opened by the first request, not when the component is configured, so the component configures successfully even while the device is unreachable.
-- The ADAM closes connections that sit idle past its Host Idle timeout. The module treats that as normal and reconnects on the next call.
+- The ADAM closes connections that sit idle past its Host Idle timeout (720 s by default, measured on a factory-default unit). The module treats that as normal and reconnects on the next call.
 - If a request fails with a connection error or gets no reply within `timeout_s`, the module reconnects and retries that request once, then raises. Repeating a relay write is safe because writing a coil to the same value twice has the same result as writing it once. A single pin call to an unreachable device therefore takes up to about four times `timeout_s` to report an error (connect and request, twice).
 - If the device answers with a Modbus exception, the call raises without a retry.
 - Requests are sent one at a time; concurrent calls wait their turn.
