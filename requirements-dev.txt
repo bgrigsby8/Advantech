@@ -1,0 +1,7 @@
+# Test-only dependencies. Kept out of requirements.txt so they are not part of
+# the module's runtime dependencies or the PyInstaller build.
+#   venv/bin/python -m pip install -r requirements-dev.txt
+#   venv/bin/python -m pytest
+-r requirements.txt
+pytest==9.2.0
+pytest-asyncio==1.5.0
