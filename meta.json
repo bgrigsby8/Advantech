@@ -3,7 +3,7 @@
   "module_id": "brad-grigsby:Advantech",
   "visibility": "public_unlisted",
   "url": "https://github.com/bgrigsby8/Advantech",
-  "description": "Modular sensor component: adam-4117",
+  "description": "Advantech ADAM I/O modules: adam-4117 analog input sensor (RS-485) and adam-6266 relay and digital input board (Modbus TCP)",
   "applications": null,
   "markdown_link": "README.md",
   "entrypoint": "dist/main",
